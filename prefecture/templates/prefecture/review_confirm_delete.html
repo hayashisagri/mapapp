@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}レビュー削除{% endblock title %}
+{% block content %}
+    <div class="mb-5">
+        <h3 class="h4">{{ review.title }}</h3>
+        <div class="px-2">
+            <h6>☆：{{ review.rate }}</h6>
+            <p>{{ review.text }}</p>
+            <img src="{{ review.image.url }}" class="img-thumbnail col-3" />
+        </div>
+    </div>
+    <form method="post" class="mt-2">
+        {% csrf_token %}
+        <button type="submit">このレビューを削除</button>
+    </form>
+{% endblock content %}

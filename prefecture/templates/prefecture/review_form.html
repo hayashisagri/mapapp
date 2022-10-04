@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block h1 %}訪問地登録 {% endblock h1 %}
+{% block content %}
+    <form method="post" enctype="multipart/form-data" class="p-4 m-4 bg-light border border-warning rounded form-group">
+        {% csrf_token %}
+        <label>
+            都道府県
+        </label>
+        <input class="form-control" value="{{ prefecture.name }}" readonly>
+        <label>
+            場所
+        </label>
+        <input name="title" class="form-control">
+        <label>
+            コメント
+        </label>
+        <textarea name="text" rows="3" class="form-control"></textarea>
+        <label>
+            星の数
+        </label>
+        <select name="rate" class="form-control">
+            <option value="0">0（最低）</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5（最高）</option>
+        </select>
+        <label>
+            画像
+        </label>
+        <input type="file" name="image" accept="image/*">
+        <input type="hidden" name="prefecture" value="{{ prefecture.id }}">
+        <button type="submit" class="btn btn-warning mt-4">記録する</button>
+        {% for error in form.errors.values %}
+            {{ error }}
+        {% endfor %}
+    </form>
+{% endblock content %}

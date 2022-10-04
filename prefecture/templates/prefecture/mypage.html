@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}マイページ{% endblock title %}
+{% block content %}
+<script>
+    function init() {
+        // 訪問有無
+        {% autoescape off %}
+        var valueMap = {{prefecture_colour_data}};
+        {% endautoescape %}
+        // 色定義
+        var colorDefs = [
+            { min:  1, max:  1, color: '#ffc107' },
+            { min: null, max:  0, color: '#DCDCDC' },
+        ];
+        // 色を取得する関数
+        var color = function(prefCode) {
+            var value = valueMap[prefCode];
+
+            var colorDef = null;
+            for (var i = 0; i < colorDefs.length; i++) {
+                colorDef = colorDefs[i];
+                var minOK = (colorDef.min == null || colorDef.min <= value);
+                var maxOK = (colorDef.max == null || value <= colorDef.max);
+                if (minOK && maxOK) return colorDef.color;
+            }
+            return colorDef.color;
+        };
+
+        var mymap = L.map('map').setView([38, 138], 5);
+
+        // 地図レイヤー追加
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        }).addTo(mymap);
+
+        // 都道府県のエリアをポリゴンで描画
+        L.geoJSON(prefs, {
+            style: function(feature) {
+                return {
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 1,
+                    fillColor: color( feature.properties.prefectures_code )
+                };
+            }
+        }).addTo(mymap);
+    }
+</script>
+
+<div class="container">
+    <div id="map" class="col-6" style="width:600px;height:600px"></div>
+    <div class="row text-center">
+        <div class="col-6">
+            <h2>訪問済み：{{visited_count}}都道府県</h2>
+            {% for visited in visited_list %}
+            <ul>
+                <li><a href="{% url 'prefecture-detail' visited.pk %}">{{ visited }}</a></li>
+            </ul>
+            {% endfor %}
+        </div>
+        <div class="col-6">
+            <h2>未訪問：{{un_visited_count}}都道府県</h2>
+            {% for un_visited in un_visited_list %}
+            <ul>
+                <li>{{ un_visited }}</a></li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

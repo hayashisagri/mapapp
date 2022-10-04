@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}都道府県削除{% endblock title %}
+{% block content %}
+    <form  method="post">
+        {% csrf_token %}
+        <button type="submit">{{ object.name }}を未訪問にする</button>
+    </form>
+{% endblock content %}

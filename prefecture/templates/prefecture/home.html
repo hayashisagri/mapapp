@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}ホーム{% endblock title %}
+{% block h1 %}訪問した都道府県を記録しよう！{% endblock h1 %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <img src="/media/map_japan.png" alt="日本地図" class="col-6">
+        <div class="col-6">
+            <p>まずは<a href="{% url 'accounts:signup' %}">会員登録</a></p>
+            <p><a href="{% url 'accounts:login' %}">ログイン</a>こちら</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

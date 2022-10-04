@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}登録{% endblock title %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% if error %}
+            <span class="mb-2 small text-danger d-block text-start">{{error}}</span>
+            <a href="{% url 'register-prefecture' %}" class="btn btn-outline-primary">選択し直す</a>
+        {% else %}
+            {{form.as_p}}
+            <input type="submit" value="登録する" class="btn btn-outline-warning">
+        {% endif %}
+    </form>
+{% endblock content %}
