@@ -38,3 +38,8 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+
+9. localhostにアクセス
+```
+http://127.0.0.1:8000/home/
+```
