@@ -45,6 +45,4 @@ http://127.0.0.1:8000/home/
 ```
 
 ### 説明資料
-```
-https://docs.google.com/presentation/d/1yJjjX5R6KVSWG3Itg-NjYuK9IoXtMCh2H46ZAtJCJvk/edit?usp=sharing
-```
+[スライド](https://docs.google.com/presentation/d/1yJjjX5R6KVSWG3Itg-NjYuK9IoXtMCh2H46ZAtJCJvk/edit?usp=sharing)
