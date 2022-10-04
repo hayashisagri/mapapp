@@ -11,7 +11,9 @@
                 <div class="px-2">
                     <h6>☆：{{ review.rate }}</h6>
                     <p>{{ review.text }}</p>
-                    <img src="{{ review.image.url }}" class="img-thumbnail col-3" />
+                    {% if review.image %}
+                        <img src="{{ review.image.url }}" class="img-thumbnail col-3" />
+                    {% endif %}
                 </div>
                 <a href="{% url 'update-review' review.id %}" class="btn btn-outline-primary mt-3">このレビューを編集</a>
                 <a href="{% url 'delete-review' review.id %}" class="btn btn-outline-danger mt-3">このレビューを削除</a>

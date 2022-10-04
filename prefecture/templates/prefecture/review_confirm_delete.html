@@ -6,7 +6,9 @@
         <div class="px-2">
             <h6>☆：{{ review.rate }}</h6>
             <p>{{ review.text }}</p>
-            <img src="{{ review.image.url }}" class="img-thumbnail col-3" />
+            {% if review.image %}
+                <img src="{{ review.image.url }}" class="img-thumbnail col-3" />
+            {% endif %}
         </div>
     </div>
     <form method="post" class="mt-2">

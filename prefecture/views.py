@@ -94,6 +94,11 @@ class UpdateReviewView(UpdateView):
     fields = ("title", "text", "rate", "image")
     template_name = "prefecture/review_update.html"
 
+    # def form_valid(self, form):
+    #     if form.instance.image == None:
+    #         form.instance.image = "no_image.png"
+    #     return super().form_valid(form)
+
     def get_success_url(self):
         return reverse(
             "prefecture-detail", kwargs={"pk": self.object.prefecture.id}

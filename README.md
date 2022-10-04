@@ -33,3 +33,8 @@ pip install Pillow
 ```
 python manage.py migrate
 ```
+
+8. server起動
+```
+python manage.py runserver
+```
